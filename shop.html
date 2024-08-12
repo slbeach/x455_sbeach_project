@@ -7,6 +7,21 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+<!-- jquery.min.js should be loaded before jquery.tablesorter.min.js because tablesorter requires basice jquery -->
+    <script
+      type="text/JavaScript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script
+      type="text/JavaScript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"
+    ></script>
+<script
+      type="text/JavaScript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"
+    ></script>
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
@@ -90,6 +105,8 @@ td:first-child, th:first-child {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+
 </style>
 </head>
 <body>
@@ -138,7 +155,7 @@ td:first-child, th:first-child {
   <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
   <div class="w3-row-padding w3-center">
     
-    <div class="w3-col m3"> <div class="dropdown">
+    <div class="w3-col m3"> <div class="dropdown" padding="w3-large">
       <span>      <img src="/images/Print1.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="1">
       </span>
       <div class="dropdown-content">
@@ -189,35 +206,56 @@ td:first-child, th:first-child {
 </div>
 
 
+<br>
 
-
-  <!--TABLE-->
-
-  <p class="w3-large w3-center w3-padding-16">SIZE AND FRAME OPTIONS</p>
-
-  <table class="center">
-    <tr>
-        <th style="border: 1px solid grey" ></th>
-        <th style="border: 1px solid grey" >12 x 8"</th>      
-        <th style="border: 1px solid grey" >18 x 12"</th>
-         <th style="border: 1px solid grey" >24 x 18"</th>
+   <!-- Table Section -->
+   <div class="w3-row w3-padding-64" id="utensil">
+    <h1 class="w3-center">Siza and frame options</h1>
+    <!-- add sortable table -->
+    <!-- step 1: create a table with 4 columns -->
+    <!-- step 2: add javascrip and jquery to make the table sortable -->
+    <div class="w3-padding-large">
+      <table id="myTable" class="w3-table-all">
+        <thead>
+          <tr class="w3-light-grey">
+            <th>PRINT</th>
+            <th>SIZE</th>
+            <th>UNFRAMED</th>
+            <th>FRAMED</th>
+          </tr>
+        </thead>
+        <tr class="w3-hover-sand">
+          <td><img src="images/Print1.jpg" style="width: 120px" /></td>
+          <td>16 x 20"</td>
+          <td>$75</td>
+          <td>$250</td>
         </tr>
-    <tr>
-      <td style="border: 1px solid grey" >unframed</td>
-      <td style="border: 1px solid grey" >$25</td> 
-      <td style="border: 1px solid grey" >$50</td>
-      <td style="border: 1px solid grey" >$75</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid grey" >framed</td>
-      <td style="border: 1px solid grey" >$125</td> 
-      <td style="border: 1px solid grey" >$175</td>
-      <td style="border: 1px solid grey" >$200</td>
-    </tr>
-</p>
-
-  </table>
-
+        <tr class="w3-hover-sand">
+          <td>
+            <img src="images/print2.jpg" style="width: 120px" />
+          </td>
+          <td>18 x 24"</td>
+          <td>$100</td>
+          <td>$275</td>
+        </tr>
+        <tr class="w3-hover-sand">
+          <td><img src="images/Untitled-4.jpg" style="width: 120px" /></td>
+          <td>10 x 18"</td>
+          <td>$70</td>
+          <td>$200</td>
+        </tr>
+        <tr class="w3-hover-sand">
+          <td>
+            <img src="./img/stand-mixer-01.jpeg" style="width: 120px" />
+          </td>
+          <td>Electronic Appliance</td>
+          <td>Stand Mixer</td>
+          <td>Big</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <hr />
   
 
 <!-- Footer -->
@@ -263,7 +301,20 @@ function toggleFunction() {
         x.className = x.className.replace(" w3-show", "");
     }
 }
+
+// begin added for sortable
+$(document).ready(function () {
+        $("table#myTable").tablesorter({
+          sortList: [
+            [2, 1],
+          ] /* 1st number - column to sort, 2nd number - asending (2) or descending order (1) */,
+          CssAsc: "tablesorter-headerAsc",
+          CssDesc: "tablesorter-headerDesc",
+        });
+      });
+      // end added for sortable
 </script>
 
 </body>
+
 </html>

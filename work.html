@@ -31,6 +31,7 @@ body, html {
 
 /* Second image (Portfolio) */
 .bgimg-2 {
+  
   background-image: url("/images/PersonalBestCover.jpg");
   min-height: 400px;
 }
@@ -51,6 +52,16 @@ body, html {
     min-height: 400px;
   }
 }
+
+.mySlides {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 65%;
+      }
+
+      
+
+
 </style>
 </head>
 <body>
@@ -79,7 +90,7 @@ body, html {
     <a href="type.html" class="w3-bar-item w3-button" onclick="toggleFunction()">TYPE</a>
     <a href="shop.html" class="w3-bar-item w3-button" onclick="toggleFunction()">SHOP</a>
     <a href="contact.html" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
-    <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+    <a href="" class="w3-bar-item w3-button">SEARCH</a>
   </div>
 </div>
 
@@ -96,8 +107,19 @@ body, html {
 <div class="w3-content w3-container w3-padding-64" id="portfolio">
   <h3 class="w3-center">WORK</h3>
   <br>
-  
 
+  <!-- carousel -->
+  <div class="w3-content">
+<!--carousel-->
+
+  <img class="mySlides" src="images/bookmockupFlat.jpg" style="max-height: 25%;">
+<img class="mySlides" src="images/gather_mag_flat.jpg">
+<img class="mySlides" src="images/MAGmockup.jpg" >
+<img class="mySlides" src="images/Outdoor_Poster_Mockup_2_Flat.jpg" >
+
+<br>
+
+</div>
   <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
   <div class="w3-row-padding w3-center">
     <div class="w3-col m3">
@@ -196,6 +218,8 @@ body, html {
   
 </div>
 
+
+
 <!-- Modal for full size images on click-->
 <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
   <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
@@ -251,6 +275,50 @@ function toggleFunction() {
         x.className = x.className.replace(" w3-show", "");
     }
 }
+
+var myIndex = 0;
+      carousel();
+      function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {
+          myIndex = 1;
+        }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+      }
+
+      // slideshow - carousel
+      function currentDiv(n) {
+        showDivs((slideIndex = n));
+        myIndex = n;
+      }
+
+      function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        if (n > x.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = x.length;
+        }
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+        }
+        x[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " w3-opacity-off";
+      }
+      // end added for carousel
+  
 </script>
 
 </body>
